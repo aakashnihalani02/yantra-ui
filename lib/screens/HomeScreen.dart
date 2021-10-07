@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   text: 'Brands',
                 ),
                 Tab(
-                  text: 'Shops',
+                  text: 'Equipments',
                 )
               ], // list of tabs
             ),
