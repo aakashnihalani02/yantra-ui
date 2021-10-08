@@ -26,64 +26,105 @@ class _CategoryPageState extends State<CategoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: getCategoryList(widget.slug, widget.isSubList),
-      builder: (context, AsyncSnapshot snapshot) {
-        switch (snapshot.connectionState) {
-          case ConnectionState.none:
-          case ConnectionState.waiting:
-            return CircularProgress();
-          default:
-            if (snapshot.hasError)
-              return Text('Error: ${snapshot.error}');
-            else
-              return createListView(context, snapshot, widget.isSubList);
-        }
-      },
-    );
+    return FutureBuilder(builder: (context, AsyncSnapshot snapshot) {
+      return createListView(context);
+    });
   }
 }
 
-Widget createListView(
-    BuildContext context, AsyncSnapshot snapshot, bool isSubList) {
-  List<CategoryModel> values = snapshot.data;
+Widget createListView(BuildContext context) {
   return GridView.count(
     crossAxisCount: 3,
-//    physics: NeverScrollableScrollPhysics(),
     padding: EdgeInsets.all(1.0),
     childAspectRatio: 8.0 / 9.0,
-    children: List<Widget>.generate(values.length, (index) {
-      return GridTile(
-          child: GridTilesCategory(
-        name: values[index].name,
-        imageUrl: values[index].imageUrl,
-        slug: values[index].slug,
-        fromSubProducts: isSubList,
-      ));
-    }),
+    children: List<Widget>.generate(
+      getCategory.length,
+      (index) {
+        return Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.grey,
+              width: 0.1,
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GridTile(
+              child: Image.asset(
+                getCategory[index].image,
+              ),
+              footer: Text(
+                getCategory[index].title,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              // Column(
+              //   children: [
+              //     Container(
+              //       height: 100,
+              //       child: Card(
+              //         elevation: 2,
+              //         child: Padding(
+              //           padding: const EdgeInsets.all(8.0),
+              //           child: Image.asset(
+              //             getCategory[index].image,
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //     Text(
+              //       getCategory[index].title,
+              //       style: GoogleFonts.openSans(
+              //         textStyle: const TextStyle(
+              //           color: Colors.black,
+              //           fontSize: 16,
+              //           fontWeight: FontWeight.w400,
+              //           overflow: TextOverflow.ellipsis,
+              //         ),
+              //       ),
+              //       textAlign: TextAlign.center,
+              //     ),
+              //   ],
+              // ),
+            ),
+          ),
+        );
+        // );
+      },
+    ),
   );
 }
 
-Future<List<CategoryModel>> getCategoryList(String slug, bool isSubList) async {
-  if (isSubList) {
-    categories = null;
-  }
-  if (categories == null) {
-    Response response;
-    response = await get(Urls.ROOT_URL + slug);
-    int statusCode = response.statusCode;
-    final body = json.decode(response.body);
-    if (statusCode == 200) {
-      categories =
-          (body as List).map((i) => CategoryModel.fromJson(i)).toList();
-
-      return categories;
-    } else {
-      return categories = List();
-    }
-  } else {
-    return categories;
-  }
-}
+List<CategoryModel> getCategory = [
+  CategoryModel(
+    image: 'assets/images/category.png',
+    title: "Undercarriage",
+  ),
+  CategoryModel(
+    image: "assets/images/category2.png",
+    title: "Filters",
+  ),
+  CategoryModel(
+    image: 'assets/images/category3.jpg',
+    title: 'Toothpoint',
+  ),
+  CategoryModel(
+    image: 'assets/images/category4.png',
+    title: 'Hydraulic Pumps',
+  ),
+  CategoryModel(
+    image: 'assets/images/category5.png',
+    title: 'Engine Parts',
+  ),
+  CategoryModel(
+    image: 'assets/images/category6.jpg',
+    title: 'Rockbreakers',
+  ),
+];
 
 // https://api.evaly.com.bd/core/public/categories/?parent=bags-luggage-966bc8aac     sub cate by slug

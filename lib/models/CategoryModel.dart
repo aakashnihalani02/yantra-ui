@@ -1,21 +1,25 @@
 class CategoryModel {
-  String name;
-  String slug;
-  String imageUrl;
+  String title;
+  // String slug;
+  String image;
 
-  CategoryModel({this.name, this.slug, this.imageUrl});
+  CategoryModel({
+    this.title,
+    // this.slug,
+    this.image,
+  });
 
   CategoryModel.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    slug = json['slug'];
-    imageUrl = json['image_url'];
+    title = json['name'];
+    // slug = json['slug'];
+    image = json['image_url'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['slug'] = this.slug;
-    data['image_url'] = this.imageUrl;
+    data['name'] = this.title;
+    // data['slug'] = this.slug;
+    data['image_url'] = this.image;
     return data;
   }
 }

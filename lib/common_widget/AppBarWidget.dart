@@ -4,12 +4,18 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 Widget appBarWidget(context) {
   return AppBar(
+    // backgroundColor: Color(0xFFFFC518),
+    backgroundColor: Colors.white,
     elevation: 0.0,
     centerTitle: true,
     title: Image.asset(
-      "assets/images/ic_app_icon.png",
-      width: 80,
-      height: 40,
+      "assets/images/logo.png",
+      width: 100,
+      height: 50,
+      // color: Colors.blue,
+    ),
+    iconTheme: IconThemeData(
+      color: Colors.black,
     ),
     actions: <Widget>[
       IconButton(
@@ -19,8 +25,11 @@ Widget appBarWidget(context) {
             MaterialPageRoute(builder: (context) => AppSignIn()),
           );
         },
-        icon: Icon(FontAwesomeIcons.user),
-        color: Color(0xFF323232),
+        icon: Icon(
+          FontAwesomeIcons.user,
+          color: Colors.black,
+        ),
+        color: Color(0xFFFFC518),
       ),
     ],
   );

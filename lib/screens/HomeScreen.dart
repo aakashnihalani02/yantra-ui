@@ -17,7 +17,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Column(
         children: <Widget>[
-          SearchWidget(),
           TopPromoSlider(),
           PopularMenu(),
           SizedBox(
@@ -54,17 +53,15 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Container(
                   color: Colors.white24,
-                  child: CategoryPage(slug: 'categories/'),
+                  child: CategoryPage(),
                 ),
                 Container(
                   color: Colors.white24,
-                  child: BrandHomePage(slug: 'brands/?limit=20&page=1'),
+                  child: BrandHomePage(),
                 ),
                 Container(
                   color: Colors.white24,
-                  child: ShopHomePage(
-                    slug: 'custom/shops/?page=1&limit=15',
-                  ),
+                  child: ShopHomePage(),
                 ) // class name
               ],
             ),

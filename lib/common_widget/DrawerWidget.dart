@@ -27,27 +27,20 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       MaterialPageRoute(builder: (context) => MyHomePage()),
                     )),
             _createDrawerItem(
-                icon: FontAwesomeIcons.user,
-                text: 'Sign In',
-                onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AppSignIn()),
-                    )),
+              icon: FontAwesomeIcons.user,
+              text: 'Sign In',
+              onTap: () {},
+            ),
             _createDrawerItem(
-                icon: Icons.favorite_border,
-                text: 'Wish List',
-                onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => WishListScreen()),
-                    )),
+              icon: Icons.favorite_border,
+              text: 'Wish List',
+              onTap: () {},
+            ),
             _createDrawerItem(
-                icon: Icons.call,
-                text: 'Contact Us',
-                onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => EmptyWishListScreen()),
-                    )),
+              icon: Icons.call,
+              text: 'Contact Us',
+              onTap: () {},
+            ),
           ],
         ),
       ),
@@ -57,28 +50,37 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
 Widget _createDrawerHeader() {
   return DrawerHeader(
-      margin: EdgeInsets.zero,
-      padding: EdgeInsets.zero,
-      child: Stack(children: <Widget>[
+    margin: EdgeInsets.zero,
+    padding: EdgeInsets.zero,
+    child: Stack(
+      children: <Widget>[
         Container(
-          padding: EdgeInsets.all(20),
-          child: Center(
-            child: Image.asset(
-              'assets/images/ic_app_icon.png',
-              width: 130,
-              height: 130,
-            ),
+          padding: EdgeInsets.only(
+            top: 20,
+            left: 15,
+            right: 20,
+            bottom: 50,
+          ),
+          child: Image.asset(
+            'assets/images/logo.png',
+            width: 250,
+            height: 250,
           ),
         ),
         Positioned(
-            bottom: 12.0,
-            left: 16.0,
-            child: Text("Developed for learing purpose by 'TARIKUL'",
-                style: TextStyle(
-                    color: Color(0xFF545454),
-                    fontSize: 10.0,
-                    fontWeight: FontWeight.w500))),
-      ]));
+          bottom: 12.0,
+          left: 16.0,
+          child: Text(
+            "One Stop Marketplace for Heavy Equipment",
+            style: TextStyle(
+                color: Color(0xFF0D4A61),
+                fontSize: 10.0,
+                fontWeight: FontWeight.bold),
+          ),
+        ),
+      ],
+    ),
+  );
 }
 
 Widget _createDrawerItem(
@@ -88,13 +90,15 @@ Widget _createDrawerItem(
       children: <Widget>[
         Icon(
           icon,
-          color: Color(0xFF808080),
+          color: Color(0xFF0D4A61),
         ),
         Padding(
           padding: EdgeInsets.only(left: 15.0),
           child: Text(
             text,
-            style: TextStyle(color: Color(0xFF484848)),
+            style: TextStyle(
+              color: Color(0xFF0D4A61),
+            ),
           ),
         )
       ],
